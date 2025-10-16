@@ -19,9 +19,17 @@ import warnings
 warnings.filterwarnings('ignore')
 
 def carregar_dados():
-    """Carrega os dados do ProUni de 2019 e 2020 com tratamento de encoding"""
+    """Carrega os dados do ProUni de 2018, 2019 e 2020 com tratamento de encoding"""
     
     print("🔄 Carregando dados...")
+    
+    # Carregar dados de 2018
+    try:
+        df_2018 = pd.read_csv('data/raw/pda-prouni-2018.csv', encoding='utf-8', sep=';')
+        print(f"✅ ProUni 2018: {df_2018.shape[0]:,} registros carregados")
+    except Exception as e:
+        print(f"❌ Erro ao carregar dados de 2018: {e}")
+        return None, None, None
     
     # Carregar dados de 2019
     try:
@@ -29,7 +37,7 @@ def carregar_dados():
         print(f"✅ ProUni 2019: {df_2019.shape[0]:,} registros carregados")
     except Exception as e:
         print(f"❌ Erro ao carregar dados de 2019: {e}")
-        return None, None
+        return None, None, None
     
     # Carregar dados de 2020
     try:
@@ -37,11 +45,11 @@ def carregar_dados():
         print(f"✅ ProUni 2020: {df_2020.shape[0]:,} registros carregados")
     except Exception as e:
         print(f"❌ Erro ao carregar dados de 2020: {e}")
-        return None, None
+        return None, None, None
     
-    return df_2019, df_2020
+    return df_2018, df_2019, df_2020
 
-def padronizar_colunas(df_2019, df_2020):
+def padronizar_colunas(df_2018, df_2019, df_2020):
     """Padroniza os nomes das colunas entre os datasets de diferentes anos"""
     
     print("🔄 Padronizando nomes das colunas...")
@@ -55,8 +63,8 @@ def padronizar_colunas(df_2019, df_2020):
         'ano_concessao': 'ANO_CONCESSAO_BOLSA',
         'codigo_ies': 'CODIGO_EMEC_IES_BOLSA', 
         'nome_ies': 'NOME_IES_BOLSA',
-        'municipio_ies': None,  # Não existe em 2019
-        'campus': None,  # Não existe em 2019
+        'municipio_ies': None,  # Não existe em 2018/2019
+        'campus': None,  # Não existe em 2018/2019
         'tipo_bolsa': 'TIPO_BOLSA',
         'modalidade_ensino': 'MODALIDADE_ENSINO_BOLSA',
         'nome_curso': 'NOME_CURSO_BOLSA',
@@ -73,7 +81,26 @@ def padronizar_colunas(df_2019, df_2020):
         'municipio_beneficiario': None  # Precisa padronizar entre os anos
     }
     
-    # Renomear colunas no dataset de 2019
+    # Renomear colunas no dataset de 2018 (mesmo padrão de 2019)
+    renomeacao_2018 = {
+        'ANO_CONCESSAO_BOLSA': 'ano_concessao',
+        'CODIGO_EMEC_IES_BOLSA': 'codigo_ies',
+        'NOME_IES_BOLSA': 'nome_ies',
+        'TIPO_BOLSA': 'tipo_bolsa',
+        'MODALIDADE_ENSINO_BOLSA': 'modalidade_ensino',
+        'NOME_CURSO_BOLSA': 'nome_curso',
+        'NOME_TURNO_CURSO_BOLSA': 'turno',
+        'CPF_BENEFICIARIO_BOLSA': 'cpf_beneficiario',
+        'SEXO_BENEFICIARIO_BOLSA': 'sexo_beneficiario',
+        'RACA_BENEFICIARIO_BOLSA': 'raca_beneficiario',
+        'DT_NASCIMENTO_BENEFICIARIO': 'data_nascimento',
+        'BENEFICIARIO_DEFICIENTE_FISICO': 'deficiente_fisico',
+        'REGIAO_BENEFICIARIO_BOLSA': 'regiao_beneficiario',
+        'SIGLA_UF_BENEFICIARIO_BOLSA': 'uf_beneficiario',
+        'MUNICIPIO_BENEFICIARIO_BOLSA': 'municipio_beneficiario'
+    }
+    
+    # Renomear colunas no dataset de 2019 (mesmo padrão de 2018)
     renomeacao_2019 = {
         'ANO_CONCESSAO_BOLSA': 'ano_concessao',
         'CODIGO_EMEC_IES_BOLSA': 'codigo_ies',
@@ -114,16 +141,19 @@ def padronizar_colunas(df_2019, df_2020):
     }
     
     # Aplicar renomeações
+    df_2018_padronizado = df_2018.rename(columns=renomeacao_2018).copy()
     df_2019_padronizado = df_2019.rename(columns=renomeacao_2019).copy()
     df_2020_padronizado = df_2020.rename(columns=renomeacao_2020).copy()
     
-    # Adicionar colunas que não existem em 2019
+    # Adicionar colunas que não existem em 2018/2019
+    df_2018_padronizado['municipio_ies'] = None
+    df_2018_padronizado['campus'] = None
     df_2019_padronizado['municipio_ies'] = None
     df_2019_padronizado['campus'] = None
     
     print("✅ Colunas padronizadas com sucesso")
     
-    return df_2019_padronizado, df_2020_padronizado
+    return df_2018_padronizado, df_2019_padronizado, df_2020_padronizado
 
 def limpar_dados(df):
     """Limpa e padroniza os dados"""
@@ -174,12 +204,12 @@ def limpar_dados(df):
     
     return df
 
-def unificar_datasets(df_2019, df_2020):
+def unificar_datasets(df_2018, df_2019, df_2020):
     """Unifica os datasets de diferentes anos"""
     
     print("🔄 Unificando datasets...")
     
-    # Garantir que ambos tenham as mesmas colunas
+    # Garantir que todos tenham as mesmas colunas
     colunas_finais = [
         'ano_concessao', 'codigo_ies', 'nome_ies', 'municipio_ies', 'campus',
         'tipo_bolsa', 'modalidade_ensino', 'nome_curso', 'turno',
@@ -189,11 +219,20 @@ def unificar_datasets(df_2019, df_2020):
     ]
     
     # Selecionar apenas as colunas finais
+    df_2018_final = df_2018[colunas_finais].copy()
     df_2019_final = df_2019[colunas_finais].copy()
     df_2020_final = df_2020[colunas_finais].copy()
     
     # Unificar
-    df_unificado = pd.concat([df_2019_final, df_2020_final], ignore_index=True)
+    df_unificado = pd.concat([df_2018_final, df_2019_final, df_2020_final], ignore_index=True)
+    
+    # Remover registros com ano_concessao nulo
+    registros_antes = len(df_unificado)
+    df_unificado = df_unificado.dropna(subset=['ano_concessao'])
+    registros_depois = len(df_unificado)
+    
+    if registros_antes != registros_depois:
+        print(f"🧹 Removidos {registros_antes - registros_depois:,} registros com ano_concessao nulo")
     
     print(f"✅ Datasets unificados: {df_unificado.shape[0]:,} registros totais")
     
@@ -240,20 +279,21 @@ def main():
     print("="*50)
     
     # 1. Carregar dados
-    df_2019, df_2020 = carregar_dados()
-    if df_2019 is None or df_2020 is None:
+    df_2018, df_2019, df_2020 = carregar_dados()
+    if df_2018 is None or df_2019 is None or df_2020 is None:
         print("❌ Erro no carregamento dos dados. Encerrando...")
         return
     
     # 2. Padronizar colunas
-    df_2019_padronizado, df_2020_padronizado = padronizar_colunas(df_2019, df_2020)
+    df_2018_padronizado, df_2019_padronizado, df_2020_padronizado = padronizar_colunas(df_2018, df_2019, df_2020)
     
     # 3. Limpar dados
+    df_2018_limpo = limpar_dados(df_2018_padronizado)
     df_2019_limpo = limpar_dados(df_2019_padronizado)
     df_2020_limpo = limpar_dados(df_2020_padronizado)
     
     # 4. Unificar datasets
-    df_final = unificar_datasets(df_2019_limpo, df_2020_limpo)
+    df_final = unificar_datasets(df_2018_limpo, df_2019_limpo, df_2020_limpo)
     
     # 5. Gerar estatísticas
     gerar_estatisticas(df_final)
@@ -262,12 +302,12 @@ def main():
     print("\\n🔄 Salvando dados processados...")
     try:
         # Salvar como CSV
-        df_final.to_csv('data/processed/prouni_2019_2020_processado.csv', index=False, encoding='utf-8')
-        print("✅ Dados salvos em: data/processed/prouni_2019_2020_processado.csv")
+        df_final.to_csv('data/processed/prouni_2018_2019_2020_processado.csv', index=False, encoding='utf-8')
+        print("✅ Dados salvos em: data/processed/prouni_2018_2019_2020_processado.csv")
         
         # Salvar também como Parquet (mais eficiente)
-        df_final.to_parquet('data/processed/prouni_2019_2020_processado.parquet', index=False)
-        print("✅ Dados salvos em: data/processed/prouni_2019_2020_processado.parquet")
+        df_final.to_parquet('data/processed/prouni_2018_2019_2020_processado.parquet', index=False)
+        print("✅ Dados salvos em: data/processed/prouni_2018_2019_2020_processado.parquet")
         
     except Exception as e:
         print(f"❌ Erro ao salvar dados: {e}")
