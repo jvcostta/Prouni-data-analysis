@@ -1,4 +1,4 @@
-# 📊 Análise Interativa de Dados do ProUni (2023-2025)
+# 📊 Análise Interativa de Dados do ProUni (2018-2020)
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![Pandas](https://img.shields.io/badge/Pandas-Latest-green.svg)
@@ -7,7 +7,7 @@
 
 ## 🎯 Objetivo do Projeto
 
-Este projeto tem como objetivo construir uma **aplicação web interativa (dashboard)** para visualizar e filtrar dados sobre as bolsas do Programa Universidade para Todos (ProUni), permitindo a análise de tendências e padrões ao longo do período de 2023 a 2025.
+Este projeto tem como objetivo construir uma **aplicação web interativa (dashboard)** para visualizar e filtrar dados sobre as bolsas do Programa Universidade para Todos (ProUni), permitindo a análise de tendências e padrões ao longo do período de 2018 a 2020.
 
 ## 🚀 Stack Tecnológica
 
@@ -28,7 +28,7 @@ Este projeto tem como objetivo construir uma **aplicação web interativa (dashb
 ## 📋 Funcionalidades Planejadas
 
 ### Filtros Interativos
-- 📅 **Seleção por Ano**: Análise temporal (2023-2025)
+- 📅 **Seleção por Ano**: Análise temporal (2018-2020)
 - 🗺️ **Filtro por Estado (UF)**: Visualização regional
 - 🎓 **Tipo de Bolsa**: Integral vs. Parcial
 - 🔍 **Busca por Curso**: Localização de cursos específicos
@@ -84,9 +84,9 @@ dash-bootstrap-components>=1.4.0
 **Fonte Oficial**: [Portal de Dados Abertos do Governo Federal](https://dados.gov.br/)
 
 ### Datasets Utilizados
-- **ProUni 2023**: Dados das bolsas concedidas em 2023
-- **ProUni 2024**: Dados das bolsas concedidas em 2024  
-- **ProUni 2025**: Dados das bolsas concedidas em 2025 (quando disponível)
+- **ProUni 2018**: Dados das bolsas concedidas em 2018 (se disponível)
+- **ProUni 2019**: Dados das bolsas concedidas em 2019
+- **ProUni 2020**: Dados das bolsas concedidas em 2020
 
 **Formato**: CSV (Comma Separated Values)
 
@@ -154,14 +154,14 @@ Prouni-data-analysis/
 
 ### Principais questões que o dashboard deve responder:
 
-1. **Evolução Temporal**: Como o número de bolsas evoluiu entre 2023-2025?
+1. **Evolução Temporal**: Como o número de bolsas evoluiu entre 2018-2020?
 2. **Distribuição Geográfica**: Quais estados/regiões concentram mais bolsas?
 3. **Análise por Curso**: Quais cursos têm maior demanda por bolsas?
 4. **Tipo de Bolsa**: Qual a proporção entre bolsas integrais e parciais?
 5. **Instituições**: Quais IES mais participam do programa?
 
 ### Exemplos de análises específicas:
-- "Evolução do número de bolsas para Engenharia de Software no DF (2023-2025)"
+- "Evolução do número de bolsas para Engenharia de Software no DF (2018-2020)"
 - "Comparação entre bolsas integrais vs. parciais por região"
 - "Top 10 cursos com mais bolsas em 2024"
 
