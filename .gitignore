@@ -47,7 +47,9 @@ venv.bak/
 .env.production.local
 
 # Data files (uncomment if you don't want to track data files)
-# *.csv
+# Large CSV files that exceed GitHub limits
+data/processed/prouni_*_processado.csv
+*.csv
 # *.xlsx
 # *.json
 # data/
