@@ -1,0 +1,173 @@
+═══════════════════════════════════════════════════════════════
+   📊 COMO RODAR O PROJETO - ProUni Dashboard
+═══════════════════════════════════════════════════════════════
+
+🎯 OBJETIVO: Visualizar dados do ProUni (2018-2020) em um dashboard interativo
+
+═══════════════════════════════════════════════════════════════
+   PASSO 1: PROCESSAR OS DADOS
+═══════════════════════════════════════════════════════════════
+
+   👆 Clique duas vezes em:
+   
+      📄 processar_dados.bat
+   
+   O que acontece:
+   ✓ Carrega dados de 2018, 2019 e 2020
+   ✓ Limpa e padroniza os dados
+   ✓ Unifica tudo em um único arquivo
+   ✓ Salva em: data/processed/
+   
+   ⏱️ Tempo: ~30 segundos
+   
+   ⚠️  Execute isso apenas UMA VEZ ou quando adicionar novos dados
+
+═══════════════════════════════════════════════════════════════
+   PASSO 2: INICIAR O DASHBOARD
+═══════════════════════════════════════════════════════════════
+
+   👆 Clique duas vezes em:
+   
+      📄 iniciar_dashboard.bat
+   
+   O que acontece:
+   ✓ Ativa o ambiente virtual Python
+   ✓ Inicia o servidor do dashboard
+   ✓ Abre na porta 8050
+   
+   Você verá:
+   
+      🚀 Iniciando Dashboard ProUni
+      ====================================
+      📍 Acesse: http://localhost:8050
+      ⚠️  Pressione CTRL+C para encerrar
+   
+═══════════════════════════════════════════════════════════════
+   PASSO 3: ACESSAR O DASHBOARD
+═══════════════════════════════════════════════════════════════
+
+   🌐 Abra seu navegador e acesse:
+   
+      http://localhost:8050
+   
+   OU
+   
+   Se o navegador não abrir automaticamente, copie e cole
+   o endereço acima na barra de endereços.
+
+═══════════════════════════════════════════════════════════════
+   🎨 O QUE VOCÊ VERÁ NO DASHBOARD
+═══════════════════════════════════════════════════════════════
+
+   📊 FILTROS NO TOPO:
+   ├─ 📅 Ano (2018, 2019, 2020, Todos)
+   ├─ 🗺️ Estado (SP, MG, RJ, etc.)
+   ├─ 🎓 Tipo de Bolsa (Integral, Parcial)
+   ├─ 📚 Modalidade (Presencial, EAD)
+   └─ 🔍 Busca por nome do curso
+   
+   📈 CARDS COM NÚMEROS:
+   ├─ Total de Bolsas
+   ├─ Bolsas Integrais
+   ├─ Bolsas Parciais
+   └─ Número de Instituições
+   
+   📊 GRÁFICOS INTERATIVOS:
+   ├─ Evolução ao longo dos anos
+   ├─ Top 15 estados com mais bolsas
+   ├─ Top 15 cursos mais procurados
+   └─ Proporção Integral vs Parcial
+   
+   📋 TABELA:
+   └─ Detalhes dos dados filtrados
+
+═══════════════════════════════════════════════════════════════
+   💡 DICAS DE USO
+═══════════════════════════════════════════════════════════════
+
+   1️⃣ Experimente os filtros
+      └─ Todos os gráficos atualizam automaticamente!
+   
+   2️⃣ Passe o mouse nos gráficos
+      └─ Veja informações detalhadas
+   
+   3️⃣ Busque cursos específicos
+      └─ Digite "eng" para ver todas as engenharias
+   
+   4️⃣ Compare anos
+      └─ Selecione "Todos" e veja a evolução temporal
+
+═══════════════════════════════════════════════════════════════
+   🛑 PARA ENCERRAR
+═══════════════════════════════════════════════════════════════
+
+   No terminal/janela do dashboard:
+   
+   Pressione: CTRL + C
+   
+   OU
+   
+   Simplesmente feche a janela
+
+═══════════════════════════════════════════════════════════════
+   ❓ PROBLEMAS COMUNS
+═══════════════════════════════════════════════════════════════
+
+   ❌ Erro: "Dados não encontrados"
+   ✅ Solução: Execute novamente o processar_dados.bat
+   
+   ❌ Erro: "Module not found" 
+   ✅ Solução: Abra o PowerShell e execute:
+      .\venv\Scripts\Activate.ps1
+      pip install -r requirements.txt
+   
+   ❌ Dashboard não abre no navegador
+   ✅ Solução: Abra manualmente: http://localhost:8050
+   
+   ❌ Porta 8050 já está em uso
+   ✅ Solução: Feche outros dashboards ou altere a porta no app.py
+
+═══════════════════════════════════════════════════════════════
+   📊 DADOS DISPONÍVEIS
+═══════════════════════════════════════════════════════════════
+
+   Total de Registros: 648.894 bolsas
+   
+   📅 Por Ano:
+   ├─ 2018: 241.032 bolsas (37%)
+   ├─ 2019: 225.555 bolsas (35%)
+   └─ 2020: 166.830 bolsas (26%)
+   
+   🎓 Por Tipo:
+   ├─ Integral: 460.122 (71%)
+   └─ Parcial: 173.295 (27%)
+   
+   🏫 Por Modalidade:
+   ├─ Presencial: 455.012 (70%)
+   └─ EAD: 178.405 (27%)
+   
+   🗺️ Top 5 Estados:
+   1. SP: 160.533 bolsas
+   2. MG: 74.069 bolsas
+   3. RS: 45.058 bolsas
+   4. PR: 41.191 bolsas
+   5. BA: 38.923 bolsas
+
+═══════════════════════════════════════════════════════════════
+   📚 MAIS INFORMAÇÕES
+═══════════════════════════════════════════════════════════════
+
+   📖 Guia Detalhado: COMO_EXECUTAR.md
+   📄 Resumo Completo: RESUMO_PROJETO.md
+   📘 Documentação: README.md
+
+═══════════════════════════════════════════════════════════════
+   🎉 PRONTO PARA COMEÇAR!
+═══════════════════════════════════════════════════════════════
+
+   1. Clique em: processar_dados.bat (primeira vez)
+   2. Clique em: iniciar_dashboard.bat
+   3. Acesse: http://localhost:8050
+   4. Explore os dados do ProUni! 📊🎓
+
+═══════════════════════════════════════════════════════════════

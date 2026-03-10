@@ -1,0 +1,165 @@
+═══════════════════════════════════════════════════════════════
+   ⚡ COMANDOS CORRETOS - ProUni Dashboard
+═══════════════════════════════════════════════════════════════
+
+🚨 ATENÇÃO: Não execute arquivos .bat com "python"!
+
+═══════════════════════════════════════════════════════════════
+   ✅ JEITO CORRETO
+═══════════════════════════════════════════════════════════════
+
+   OPÇÃO 1 - CLIQUE DUPLO (Mais Fácil):
+   
+   1. Clique duas vezes em: processar_dados.bat
+   2. Clique duas vezes em: iniciar_dashboard.bat
+   
+   
+   OPÇÃO 2 - POWERSHELL:
+   
+   # Processar dados
+   .\processar_dados.bat
+   
+   # Iniciar dashboard
+   .\iniciar_dashboard.bat
+   
+   
+   OPÇÃO 3 - COMANDOS PYTHON DIRETOS:
+   
+   # Processar dados
+   python src\data_processing\clean_data.py
+   
+   # Iniciar dashboard
+   python app.py
+
+═══════════════════════════════════════════════════════════════
+   ❌ JEITOS ERRADOS (NÃO FAÇA ASSIM)
+═══════════════════════════════════════════════════════════════
+
+   ❌ python .\processar_dados.bat
+      └─ ERRADO! Arquivos .bat não são scripts Python
+   
+   ❌ python .\iniciar_dashboard.bat
+      └─ ERRADO! Execute diretamente ou clique duas vezes
+
+═══════════════════════════════════════════════════════════════
+   📋 PASSO A PASSO COMPLETO
+═══════════════════════════════════════════════════════════════
+
+   1️⃣ PRIMEIRA VEZ - Processar os Dados:
+   
+      Método A: Clique duas vezes em processar_dados.bat
+      
+      Método B: No PowerShell, digite:
+      .\processar_dados.bat
+      
+      Método C: No PowerShell, digite:
+      python src\data_processing\clean_data.py
+   
+   
+   2️⃣ Iniciar o Dashboard:
+   
+      Método A: Clique duas vezes em iniciar_dashboard.bat
+      
+      Método B: No PowerShell, digite:
+      .\iniciar_dashboard.bat
+      
+      Método C: No PowerShell, digite:
+      python app.py
+   
+   
+   3️⃣ Acessar no Navegador:
+   
+      http://localhost:8050
+      
+      OU
+      
+      http://127.0.0.1:8050
+
+═══════════════════════════════════════════════════════════════
+   🎯 O QUE VOCÊ DEVE VER
+═══════════════════════════════════════════════════════════════
+
+   Ao iniciar o dashboard, você verá:
+   
+   📂 Carregando dados do arquivo Parquet...
+   ✅ Dados carregados: 648,894 registros
+   
+   ============================================================
+   🚀 Iniciando Dashboard ProUni
+   ============================================================
+   📍 Acesse o dashboard em: http://localhost:8050
+   ⚠️  Pressione CTRL+C para encerrar
+   ============================================================
+   
+   Dash is running on http://127.0.0.1:8050/
+   
+    * Serving Flask app 'app'
+    * Debug mode: on
+   
+   
+   ✅ Está funcionando! Abra o navegador em localhost:8050
+
+═══════════════════════════════════════════════════════════════
+   🛑 PARA ENCERRAR O DASHBOARD
+═══════════════════════════════════════════════════════════════
+
+   No terminal onde o dashboard está rodando:
+   
+   Pressione: CTRL + C
+   
+   Você verá uma mensagem de encerramento.
+
+═══════════════════════════════════════════════════════════════
+   💡 DICAS IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+   ✓ Processe os dados apenas UMA VEZ (ou quando adicionar novos)
+   
+   ✓ O dashboard pode ser reiniciado quantas vezes quiser
+   
+   ✓ Use CTRL+C para encerrar antes de iniciar novamente
+   
+   ✓ Se a porta 8050 já estiver em uso, encerre o processo anterior
+   
+   ✓ Arquivos .bat são scripts do Windows, não Python!
+
+═══════════════════════════════════════════════════════════════
+   ❓ PROBLEMAS COMUNS
+═══════════════════════════════════════════════════════════════
+
+   PROBLEMA: "SyntaxError: invalid syntax" ao executar .bat
+   SOLUÇÃO: Não use "python" antes do .bat!
+            Execute: .\processar_dados.bat
+            OU clique duas vezes no arquivo
+   
+   
+   PROBLEMA: "Dados não encontrados"
+   SOLUÇÃO: Execute primeiro o processamento:
+            python src\data_processing\clean_data.py
+   
+   
+   PROBLEMA: "Port 8050 is already in use"
+   SOLUÇÃO: 1. Encerre o dashboard anterior (CTRL+C)
+            2. Ou mude a porta no app.py (linha final)
+   
+   
+   PROBLEMA: Dashboard não abre no navegador
+   SOLUÇÃO: Abra manualmente: http://localhost:8050
+
+═══════════════════════════════════════════════════════════════
+   🎉 RESUMO RÁPIDO
+═══════════════════════════════════════════════════════════════
+
+   PRIMEIRA VEZ:
+   1. Clique duas vezes: processar_dados.bat
+   2. Clique duas vezes: iniciar_dashboard.bat
+   3. Abra: http://localhost:8050
+   
+   DAS PRÓXIMAS VEZES:
+   1. Clique duas vezes: iniciar_dashboard.bat
+   2. Abra: http://localhost:8050
+   
+   ENCERRAR:
+   • Pressione CTRL+C no terminal
+
+═══════════════════════════════════════════════════════════════

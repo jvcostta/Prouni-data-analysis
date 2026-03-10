@@ -7,88 +7,69 @@
 
 ## 🎯 Objetivo do Projeto
 
-Este projeto tem como objetivo construir uma **aplicação web interativa (dashboard)** para visualizar e filtrar dados sobre as bolsas do Programa Universidade para Todos (ProUni), permitindo a análise de tendências e padrões ao longo do período de 2018 a 2020.
+Este projeto oferece uma **aplicação web interativa (dashboard)** para visualizar e filtrar dados sobre as bolsas do Programa Universidade para Todos (ProUni) dos anos **2018, 2019 e 2020**, permitindo a análise de tendências e padrões de forma visual e intuitiva.
 
-## 🚀 Stack Tecnológica
+## ✨ Principais Funcionalidades
 
-| Tecnologia | Propósito | Justificativa |
-|------------|-----------|---------------|
-| **Python** | Linguagem principal | Ecosistema robusto para análise de dados |
-| **Pandas** | Análise e manipulação de dados | Padrão da indústria para manipulação de dados |
-| **Plotly Dash** | Dashboard interativo e visualizações | Permite criar aplicações web usando apenas Python |
-| **NumPy** | Cálculos numéricos | Suporte eficiente para operações matemáticas |
+- 📅 **Filtros por Ano**: Visualize dados de 2018, 2019, 2020 ou todos os anos juntos
+- 🗺️ **Filtro Geográfico**: Analise por estado (UF)
+- 🎓 **Tipo de Bolsa**: Compare bolsas integrais vs parciais
+- � **Modalidade de Ensino**: Presencial, EAD, etc.
+- 🔍 **Busca por Curso**: Encontre cursos específicos
+- 📊 **Visualizações Interativas**: Gráficos dinâmicos e responsivos
+- 📋 **Tabelas Detalhadas**: Explore os dados em formato tabular
 
-### Por que essa stack?
+## 🚀 Como Executar
 
-- **Simplicidade**: Desenvolvimento 100% em Python, sem necessidade de HTML, CSS ou JavaScript
-- **Eficiência**: Pandas é otimizado para grandes volumes de dados
-- **Interatividade**: Plotly Dash oferece componentes interativos nativos
-- **Produtividade**: Foco na análise de dados, não na infraestrutura web
+### 1️⃣ Instalar Dependências
 
-## 📋 Funcionalidades Planejadas
+```powershell
+# Criar e ativar ambiente virtual
+python -m venv venv
+.\venv\Scripts\Activate.ps1
 
-### Filtros Interativos
-- 📅 **Seleção por Ano**: Análise temporal (2018-2020)
-- 🗺️ **Filtro por Estado (UF)**: Visualização regional
-- 🎓 **Tipo de Bolsa**: Integral vs. Parcial
-- 🔍 **Busca por Curso**: Localização de cursos específicos
-- 🏫 **Busca por Instituição**: Análise por IES
-
-### Visualizações
-- 📊 Gráficos de barras interativos
-- 📈 Análises de tendências temporais
-- 🗺️ Mapas de distribuição geográfica
-- 📋 Tabelas dinâmicas com dados detalhados
-
-## 🛠️ Configuração do Ambiente
-
-### Pré-requisitos
-- Python 3.8 ou superior
-- Git
-
-### Instalação
-
-1. **Clone o repositório**
-   ```bash
-   git clone https://github.com/jvcostta/Prouni-data-analysis.git
-   cd Prouni-data-analysis
-   ```
-
-2. **Crie e ative o ambiente virtual**
-   ```bash
-   # Windows (PowerShell)
-   py -m venv venv
-   venv\Scripts\Activate.ps1
-   
-   # Linux/macOS
-   python -m venv venv
-   source venv/bin/activate
-   ```
-
-3. **Instale as dependências**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### Dependências Principais
-```txt
-pandas>=1.5.0
-dash>=2.14.0
-plotly>=5.15.0
-numpy>=1.24.0
-dash-bootstrap-components>=1.4.0
+# Instalar pacotes
+pip install -r requirements.txt
 ```
+
+### 2️⃣ Processar os Dados
+
+**Opção A - Usando script batch:**
+```
+Clique duas vezes em: processar_dados.bat
+```
+
+**Opção B - Via terminal:**
+```powershell
+python src\data_processing\clean_data.py
+```
+
+### 3️⃣ Iniciar o Dashboard
+
+**Opção A - Usando script batch:**
+```
+Clique duas vezes em: iniciar_dashboard.bat
+```
+
+**Opção B - Via terminal:**
+```powershell
+python app.py
+```
+
+### 4️⃣ Acessar
+
+Abra seu navegador em: **http://localhost:8050**
+
+> 📖 Para mais detalhes, consulte [COMO_EXECUTAR.md](COMO_EXECUTAR.md)
 
 ## 📊 Fonte dos Dados
 
 **Fonte Oficial**: [Portal de Dados Abertos do Governo Federal](https://dados.gov.br/)
 
 ### Datasets Utilizados
-- **ProUni 2018**: Dados das bolsas concedidas em 2018 (se disponível)
-- **ProUni 2019**: Dados das bolsas concedidas em 2019
-- **ProUni 2020**: Dados das bolsas concedidas em 2020
-
-**Formato**: CSV (Comma Separated Values)
+- ✅ **ProUni 2018**: Dados das bolsas concedidas em 2018
+- ✅ **ProUni 2019**: Dados das bolsas concedidas em 2019
+- ✅ **ProUni 2020**: Dados das bolsas concedidas em 2020
 
 ## 🗂️ Estrutura do Projeto
 
@@ -96,107 +77,70 @@ dash-bootstrap-components>=1.4.0
 Prouni-data-analysis/
 │
 ├── 📁 data/
-│   ├── raw/                    # Dados originais (CSV)
-│   ├── processed/              # Dados limpos e processados
-│   └── README.md              # Documentação dos dados
+│   ├── raw/                           # Dados originais (CSV)
+│   │   ├── pda-prouni-2018.csv
+│   │   ├── pda-prouni-2019.csv
+│   │   └── ProuniRelatorioDadosAbertos2020.csv
+│   ├── processed/                     # Dados processados
+│   │   ├── prouni_2018_2020_processado.csv
+│   │   └── prouni_2018_2020_processado.parquet
+│   └── README.md
 │
 ├── 📁 src/
-│   ├── data_processing/        # Scripts de limpeza de dados
-│   ├── analysis/              # Análises exploratórias
-│   ├── dashboard/             # Código do dashboard Dash
-│   └── utils/                 # Funções auxiliares
+│   └── data_processing/               # Scripts de processamento
+│       ├── __init__.py
+│       └── clean_data.py              # Script principal de limpeza
 │
-├── 📁 notebooks/              # Jupyter notebooks para EDA
-├── 📁 assets/                 # CSS, imagens e outros recursos
-├── 📁 tests/                  # Testes unitários
+├── 📁 notebooks/                      # Jupyter notebooks para EDA
+│   └── 01_exploratory_data_analysis.ipynb
 │
-├── .gitignore
-├── requirements.txt
-├── README.md
-└── app.py                     # Aplicação principal do dashboard
+├── 📁 assets/                         # CSS, imagens e recursos
+│
+├── � app.py                          # ⭐ Aplicação principal do dashboard
+├── 📄 processar_dados.bat             # Script para processar dados (Windows)
+├── 📄 iniciar_dashboard.bat           # Script para iniciar dashboard (Windows)
+├── 📄 requirements.txt                # Dependências do projeto
+├── 📄 COMO_EXECUTAR.md                # Guia detalhado de execução
+├── 📄 README.md                       # Este arquivo
+└── 📄 .gitignore                      # Arquivos ignorados pelo Git
 ```
 
-## 🏗️ Plano de Execução
+## 🛠️ Stack Tecnológica
 
-### ✅ Fase 0: Preparação e Configuração do Ambiente
-- [x] Instalação do Python
-- [x] Criação do ambiente virtual
-- [x] Instalação das bibliotecas necessárias
-- [x] Configuração do Git e .gitignore
+| Tecnologia | Propósito |
+|------------|-----------|
+| **Python 3.8+** | Linguagem principal |
+| **Pandas** | Manipulação e análise de dados |
+| **Plotly Dash** | Framework para dashboard web interativo |
+| **Dash Bootstrap Components** | Componentes de UI responsivos |
+| **NumPy** | Operações numéricas eficientes |
+| **Matplotlib & Seaborn** | Análise exploratória (notebooks) |
 
-### 📍 Fase 1: Coleta e Exploração Inicial dos Dados
-- [ ] Localização e download dos datasets do ProUni
-- [ ] Carregamento dos dados com Pandas
-- [ ] Análise exploratória inicial (EDA)
-- [ ] Identificação da estrutura dos dados
+## 📈 Visualizações Disponíveis
 
-### 🧹 Fase 2: Limpeza e Pré-processamento dos Dados
-- [ ] Tratamento de dados faltantes
-- [ ] Correção de tipos de dados
-- [ ] Padronização de dados textuais
-- [ ] Feature engineering
-- [ ] Unificação dos datasets de diferentes anos
+### Cards de Métricas
+- Total de bolsas concedidas
+- Total de bolsas integrais
+- Total de bolsas parciais
+- Número de instituições participantes
 
-### 🔍 Fase 3: Análise Aprofundada e Geração de Insights
-- [ ] Definição das perguntas de negócio
-- [ ] Agregação e análise dos dados
-- [ ] Criação de visualizações estáticas
-- [ ] Documentação dos insights encontrados
+### Gráficos Interativos
+- **Evolução Temporal**: Linha do tempo mostrando a evolução das bolsas
+- **Distribuição Geográfica**: Top 15 estados com mais bolsas
+- **Top Cursos**: 15 cursos mais procurados
+- **Tipo de Bolsa**: Proporção entre integrais e parciais
 
-### 🎨 Fase 4: Desenvolvimento do Dashboard Interativo
-- [ ] Estruturação do layout da aplicação
-- [ ] Implementação dos componentes interativos
-- [ ] Desenvolvimento dos callbacks do Dash
-- [ ] Criação dos gráficos interativos
-- [ ] Testes e refinamentos
+### Tabela Detalhada
+Visualização tabular com filtros aplicados, permitindo análise detalhada dos dados.
 
-## 🤔 Perguntas de Pesquisa
+## 🤔 Perguntas Respondidas pelo Dashboard
 
-### Principais questões que o dashboard deve responder:
-
-1. **Evolução Temporal**: Como o número de bolsas evoluiu entre 2018-2020?
-2. **Distribuição Geográfica**: Quais estados/regiões concentram mais bolsas?
-3. **Análise por Curso**: Quais cursos têm maior demanda por bolsas?
-4. **Tipo de Bolsa**: Qual a proporção entre bolsas integrais e parciais?
-5. **Instituições**: Quais IES mais participam do programa?
-
-### Exemplos de análises específicas:
-- "Evolução do número de bolsas para Engenharia de Software no DF (2018-2020)"
-- "Comparação entre bolsas integrais vs. parciais por região"
-- "Top 10 cursos com mais bolsas em 2024"
-
-## 🚀 Como Executar
-
-### Desenvolvimento
-```bash
-# Ativar ambiente virtual
-venv\Scripts\Activate.ps1  # Windows
-source venv/bin/activate   # Linux/macOS
-
-# Executar o dashboard
-python app.py
-```
-
-### Acesso
-Abra seu navegador e acesse: `http://localhost:8050`
-
-## 🧪 Testes
-
-```bash
-# Executar todos os testes
-python -m pytest tests/
-
-# Executar testes com cobertura
-python -m pytest tests/ --cov=src/
-```
-
-## 📈 Roadmap Futuro
-
-- [ ] **Fase 5**: Deploy da aplicação (Heroku/Streamlit Cloud)
-- [ ] **Fase 6**: Adição de mais anos de dados (2026+)
-- [ ] **Fase 7**: Implementação de machine learning para previsões
-- [ ] **Fase 8**: API REST para consumo dos dados processados
-- [ ] **Fase 9**: Exportação de relatórios em PDF
+1. **Como evoluiu o número de bolsas entre 2018 e 2020?**
+2. **Quais estados concentram mais bolsas do ProUni?**
+3. **Quais são os cursos mais procurados?**
+4. **Qual a proporção entre bolsas integrais e parciais?**
+5. **Como está a distribuição geográfica das bolsas?**
+6. **Quais instituições mais participam do programa?**
 
 ## 🤝 Contribuição
 
